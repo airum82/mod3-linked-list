@@ -2,7 +2,7 @@ var titleInput = document.querySelector('.title');
 var urlInput = document.querySelector('.url');
 var createButton = document.querySelector('.create');
 
-createButton.addEventListener('click', otherCreateLink);
+createButton.addEventListener('click', createLink);
 
 function createLink() {
   event.preventDefault();
@@ -15,6 +15,10 @@ function createLink() {
   var urlP = document.createElement('p')
   link.appendChild(titleP);
   link.appendChild(urlP);
+  var deleteButton = document.createElement('button');
+  link.appendChild(deleteButton);
+  deleteButton.addEventListener('click', deleteLink);
+  deleteButton.innerHTML = 'delete';
   titleP.innerHTML = title;
   urlP.innerHTML = url;
   resetForm();
@@ -25,16 +29,6 @@ function resetForm() {
   urlInput.value = '';
 }
 
-function otherCreateLink() {
-  event.preventDefault();
-  title = titleInput.value;
-  url = urlInput.value;
-  var list = document.querySelector('aside');
-  link = 
-    `<arcticle>
-      <p>${title}</p>
-      <p>${url}</p>
-     <article>`
-  list.innerHTML += link;
-  resetForm();
+function deleteLink(e) {
+  e.target.parentElement.remove();
 }
